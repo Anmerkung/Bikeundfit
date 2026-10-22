@@ -112,13 +112,6 @@ footer{font-size:12px;color:var(--muted);display:grid;gap:4px}
     <div class="mrz" aria-hidden="true">BFDPP&lt;TOURENRAD&lt;NIEDRIG&lt;&lt;BF26TRL0417&lt;2026&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
   </div>
 
-  <div class="roles" role="tablist" aria-label="Zugriffsrolle">
-    <button role="tab" id="r-oeffentlich" data-r="oeffentlich" aria-selected="true">Öffentlich</button>
-    <button role="tab" id="r-werkstatt" data-r="werkstatt" aria-selected="false">Werkstatt</button>
-    <button role="tab" id="r-behoerde" data-r="behoerde" aria-selected="false">Behörde</button>
-  </div>
-  <p class="rolenote" id="rolenote">Ansicht für Käufer*innen: Basisdaten, Materialien, CO₂-Bilanz, Reparatur und Entsorgung.</p>
-
   <section class="blk">
     <h2>Produkt &amp; Hersteller <small>Stammdaten</small></h2>
     <dl class="kv">
@@ -131,133 +124,10 @@ footer{font-size:12px;color:var(--muted);display:grid;gap:4px}
     </dl>
   </section>
 
-  <section class="blk">
-    <h2>Materialzusammensetzung <small>Masseanteile</small></h2>
-    <div class="tbl"><table>
-      <thead><tr><th>Material</th><th>Bauteile</th><th class="n">kg</th><th class="n">Rezyklat</th></tr></thead>
-      <tbody id="mat"></tbody>
-    </table></div>
-  </section>
-
-  <section class="blk">
-    <h2>CO₂-Fußabdruck <small>kg CO₂e · Lebenszyklus</small></h2>
-    <div class="stats">
-      <div class="stat"><div class="v">188</div><div class="l">kg CO₂e gesamt</div></div>
-      <div class="stat"><div class="v">34 %</div><div class="l">Rezyklatanteil</div></div>
-      <div class="stat"><div class="v">92 %</div><div class="l">recyclingfähig</div></div>
-    </div>
-    <div class="chart" id="co2"></div>
-  </section>
-
-  <section class="blk">
-    <h2>Reparatur &amp; Ersatzteile <small>Right to Repair</small></h2>
-    <dl class="kv" style="margin-bottom:14px">
-      <dt>Reparierbarkeit</dt><dd><b>8,1 / 10</b> <span class="pill ok">gut</span></dd>
-      <dt>Ersatzteilverfügbarkeit</dt><dd>garantiert bis 2036</dd>
-      <dt>Werkzeuge</dt><dd>Standardwerkzeug (Inbus 4/5/6 mm, Torx T25)</dd>
-    </dl>
-    <div class="tbl"><table>
-      <thead><tr><th>Ersatzteil</th><th>Teile-Nr.</th><th class="n">Lieferzeit</th></tr></thead>
-      <tbody>
-        <tr><td>Bremsscheibe 180 mm</td><td class="mono">BF-BS-180-02</td><td class="n">3 Tage</td></tr>
-        <tr><td>Sattel Comfort (3D-gescannt, Rev. B)</td><td class="mono">BF-SA-CMF-B</td><td class="n">5 Tage</td></tr>
-        <tr><td>Kette 1/2″ × 1/8″</td><td class="mono">BF-KT-118</td><td class="n">2 Tage</td></tr>
-        <tr><td>Schutzblech-Set 28″</td><td class="mono">BF-SB-28</td><td class="n">7 Tage</td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <section class="blk" data-min="werkstatt">
-    <h2>Wartungshistorie <small>Werkstatt</small></h2>
-    <div class="tbl"><table>
-      <thead><tr><th>Datum</th><th>Arbeit</th><th class="n">km</th></tr></thead>
-      <tbody>
-        <tr><td>14.03.2026</td><td>Auslieferung, Erstinspektion</td><td class="n">0</td></tr>
-        <tr><td>02.06.2026</td><td>Inspektion, Kette nachgestellt</td><td class="n">412</td></tr>
-        <tr><td>20.09.2026</td><td>Bremsbeläge vorne getauscht</td><td class="n">1 380</td></tr>
-      </tbody>
-    </table></div>
-    <dl class="kv" style="margin-top:14px">
-      <dt>Anzugsmomente</dt><dd>Vorbau 6 Nm · Sattelklemme 5 Nm · Bremsscheibe 6 Nm</dd>
-      <dt>Explosionsdarstellung</dt><dd>aus CAD (Siemens NX), Baugruppe BF-TRL-ASM, Rev. C</dd>
-    </dl>
-  </section>
-
-  <section class="blk" data-min="behoerde">
-    <h2>Konformität &amp; Rückverfolgung <small>Behörde</small></h2>
-    <dl class="kv">
-      <dt>PLM-Referenz</dt><dd class="mono">Teamcenter Item BF-TRL-0417 · Rev. C · Status „Released“</dd>
-      <dt>Freigabe</dt><dd>Workflow „Serienfreigabe“, abgeschlossen 03.02.2026</dd>
-      <dt>Lieferkette</dt><dd>Aluminium: Hütte NO (Wasserkraft) → Rohr PT → Rahmen PT → Montage DE</dd>
-      <dt>Prüfberichte</dt><dd>ISO 4210 Rahmenermüdung bestanden (Prüfbericht PB-2026-031)</dd>
-      <dt>Rechtsrahmen</dt><dd>EU-Ökodesign-Verordnung (ESPR) 2024/1781 · Konzeptstudie, für Fahrräder noch keine Pflicht</dd>
-    </dl>
-  </section>
-
-  <div class="lock" id="lock" hidden>
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-    <span id="locktxt"></span>
-  </div>
-
-  <section class="blk">
-    <h2>Ende der Nutzung <small>Demontage</small></h2>
-    <ol class="steps">
-      <li>Pedale, Laufräder und Sattel abbauen (Standardwerkzeug).</li>
-      <li>Reifen und Schläuche getrennt zum Gummi-Recycling.</li>
-      <li>Aluminiumrahmen und Felgen sortenrein zum Metallrecycling.</li>
-      <li>Kette, Kassette, Schrauben: Stahlschrott.</li>
-      <li>Rückgabe kostenlos bei jedem Bike-und-Fit-Händler.</li>
-    </ol>
-  </section>
-
   <footer>
-    <span>Datenstand 22.10.2026 · Pass-Version 1.3 · erzeugt aus Teamcenter-Daten</span>
     <span>Demonstrator für Lehrzwecke. Keine realen Produkt- oder Unternehmensdaten.</span>
   </footer>
 </div>
-
-<script>
-const mats=[
-  ["Aluminium 6061","Rahmen, Gabel, Felgen, Lenker",7.9,60],
-  ["Stahl","Kette, Speichen, Schrauben, Kassette",3.6,25],
-  ["Gummi (Natur/Synth.)","Reifen, Schläuche, Griffe",2.7,10],
-  ["Kunststoffe (PA, PP)","Schutzbleche, Pedale, Kettenschutz",1.9,15],
-  ["Sonstiges","Sattel (PU/Gel), Leuchten, Kabel",1.3,0]
-];
-document.getElementById("mat").innerHTML=mats.map(m=>
-  `<tr><td>${m[0]}<div class="bar"><i style="width:${(m[2]/17.4*100).toFixed(0)}%"></i></div></td><td>${m[1]}</td><td class="n">${m[2].toFixed(1).replace(".",",")}</td><td class="n">${m[3]} %</td></tr>`).join("");
-
-const co2=[["Rohstoffe",145],["Fertigung",18],["Transport",9],["Nutzung/Wartung",12],["Entsorgung",4]];
-(function(){
-  const W=520,rowH=30,top=6,lx=118,max=150,bw=W-lx-50,H=top+co2.length*rowH+24;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="CO2-Fußabdruck nach Lebenszyklusphase">`;
-  [0,50,100,150].forEach(t=>{const x=lx+t/max*bw;
-    s+=`<line x1="${x}" x2="${x}" y1="${top}" y2="${top+co2.length*rowH}" stroke="var(--line)"/><text class="lab" x="${x}" y="${H-6}" text-anchor="middle">${t}</text>`});
-  co2.forEach((d,i)=>{const y=top+i*rowH+6,w=d[1]/max*bw;
-    s+=`<text class="lab" x="${lx-8}" y="${y+13}" text-anchor="end">${d[0]}</text><rect x="${lx}" y="${y}" width="${w}" height="18" rx="3" fill="var(--accent)"/><text x="${lx+w+6}" y="${y+13}">${d[1]}</text>`});
-  document.getElementById("co2").innerHTML=s+"</svg>";
-})();
-
-const order=["oeffentlich","werkstatt","behoerde"];
-const notes={
-  oeffentlich:"Ansicht für Käufer*innen: Basisdaten, Materialien, CO₂-Bilanz, Reparatur und Entsorgung.",
-  werkstatt:"Ansicht für Fachwerkstätten: zusätzlich Wartungshistorie, Anzugsmomente und CAD-Explosionsdarstellung.",
-  behoerde:"Ansicht für Marktüberwachung: zusätzlich PLM-Referenz, Freigabestatus, Lieferkette und Prüfberichte."
-};
-function setRole(r){
-  if(!order.includes(r)) r="oeffentlich";
-  const lvl=order.indexOf(r);
-  document.querySelectorAll(".roles button").forEach(b=>b.setAttribute("aria-selected",b.dataset.r===r));
-  let hiddenCount=0;
-  document.querySelectorAll("[data-min]").forEach(el=>{const h=order.indexOf(el.dataset.min)>lvl;el.hidden=h;if(h)hiddenCount++});
-  document.getElementById("rolenote").textContent=notes[r];
-  const lock=document.getElementById("lock");
-  lock.hidden=hiddenCount===0;
-  document.getElementById("locktxt").textContent=hiddenCount+(hiddenCount===1?" weiterer Datenblock ist":" weitere Datenblöcke sind")+" nur für berechtigte Rollen sichtbar (in der Realität per Login/Zertifikat).";
-}
-document.querySelectorAll(".roles button").forEach(b=>b.addEventListener("click",()=>{setRole(b.dataset.r);try{history.replaceState(null,"","#"+b.dataset.r)}catch(e){}}));
-setRole((location.hash||"").slice(1));
-</script>
 
 </body>
 </html>
