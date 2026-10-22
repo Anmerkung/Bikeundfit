@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Produktpass Tourenrad Comfort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: ein Pass-Dokument, mobil zuerst — Ausweis-Kopf, Rollenwahl, Datenblöcke, maschinenlesbare Zeile am Fuß */
+:root{
+  --bg:#eef1f3; --paper:#ffffff; --ink:#15212b; --muted:#5b6b78; --line:#d5dde3;
+  --accent:#1d5fa8; --accent-soft:#e3edf8; --signal:#2f8f5b; --warn:#b26a12;
+  --band:#15212b; --band-ink:#eef3f7;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f161c; --paper:#172129; --ink:#e4ebf0; --muted:#93a4b1; --line:#2a3741;
+  --accent:#6fa7e6; --accent-soft:#1c2c3c; --signal:#5cc28a; --warn:#e3a14b;
+  --band:#0a1015; --band-ink:#e4ebf0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f161c; --paper:#172129; --ink:#e4ebf0; --muted:#93a4b1; --line:#2a3741;
+  --accent:#6fa7e6; --accent-soft:#1c2c3c; --signal:#5cc28a; --warn:#e3a14b;
+  --band:#0a1015; --band-ink:#e4ebf0; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px;display:grid;gap:18px}
+.demo{font-family:var(--f-mono);font-size:12px;color:var(--warn);border:1px dashed var(--warn);border-radius:6px;padding:8px 12px}
+/* Kopf */
+.pass{background:var(--band);color:var(--band-ink);border-radius:14px;overflow:hidden;position:relative}
+.pass::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.08;
+  background:repeating-radial-gradient(circle at 85% 30%,var(--band-ink) 0 1px,transparent 1px 9px)}
+.pass-in{padding:20px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;position:relative;z-index:1}
+.issuer{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+h1{font-family:var(--f-display);font-stretch:78%;font-weight:800;font-size:clamp(30px,8vw,46px);line-height:.95;margin:8px 0 6px;text-wrap:balance;letter-spacing:-.01em}
+.sub{opacity:.8;font-size:14px}
+.bike{width:132px;max-width:100%}
+.bike svg{width:100%;height:auto;display:block}
+.idrow{display:flex;flex-wrap:wrap;gap:8px 18px;padding:12px 20px;border-top:1px solid rgba(127,140,150,.35);position:relative;z-index:1;font-family:var(--f-mono);font-size:12px}
+.idrow b{font-weight:500;opacity:.6;margin-right:6px}
+.mrz{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;padding:10px 20px 14px;opacity:.55;white-space:nowrap;overflow:hidden;text-overflow:clip;position:relative;z-index:1}
+/* Rollen */
+.roles{display:flex;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:5px}
+.roles button{flex:1;min-width:0;font:600 13px var(--f-body);color:var(--muted);background:transparent;border:0;border-radius:7px;padding:9px 6px;cursor:pointer}
+.roles button[aria-selected="true"]{background:var(--accent);color:var(--paper)}
+.roles button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rolenote{font-size:13px;color:var(--muted);margin-top:-8px}
+/* Blöcke */
+section.blk{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px}
+h2{font-family:var(--f-display);font-stretch:85%;font-weight:700;font-size:20px;margin:0 0 12px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+h2 small{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+dl.kv{display:grid;grid-template-columns:minmax(120px,40%) 1fr;gap:8px 14px;margin:0}
+dl.kv dt{color:var(--muted);font-size:13px}
+dl.kv dd{margin:0;min-width:0}
+.mono{font-family:var(--f-mono);font-size:13px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th{text-align:left;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);padding:6px 8px 6px 0}
+td{padding:7px 8px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.n{text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.bar{height:6px;background:var(--accent-soft);border-radius:3px;margin-top:4px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{border-left:2px solid var(--accent);padding-left:10px}
+.stat .v{font-family:var(--f-display);font-stretch:80%;font-weight:700;font-size:26px;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .l{font-size:12px;color:var(--muted)}
+.pill{display:inline-block;font:500 11px var(--f-mono);padding:2px 8px;border-radius:99px;border:1px solid currentColor}
+.ok{color:var(--signal)} .wn{color:var(--warn)}
+.chart svg{width:100%;height:auto;display:block}
+.chart text{fill:var(--ink);font-family:var(--f-mono);font-size:11px}
+.chart .lab{fill:var(--muted)}
+ol.steps{margin:0;padding-left:20px;display:grid;gap:6px}
+.lock{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:14px;border:1px dashed var(--line);border-radius:10px;padding:14px}
+.lock svg{flex:none}
+footer{font-size:12px;color:var(--muted);display:grid;gap:4px}
+@media (max-width:520px){
+  .stats{grid-template-columns:1fr 1fr}
+  dl.kv{grid-template-columns:1fr} dl.kv dt{margin-top:6px}
+  .bike{width:92px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="demo">DEMONSTRATOR · Studienprojekt „PLM und CAD-Anwendungen“, HS Hannover · fiktives Unternehmen aus dem Planspiel, alle Werte sind Beispielwerte</div>
+
+  <div class="pass">
+    <div class="pass-in">
+      <div>
+        <div class="issuer">Digitaler Produktpass · Bike und Fit GmbH</div>
+        <h1>Tourenrad Comfort&nbsp;Low</h1>
+        <div class="sub">Tiefeinsteiger-Tourenrad, Aluminiumrahmen, 28″, Nabenschaltung</div>
+      </div>
+      <div class="bike" aria-hidden="true">
+        <svg viewBox="0 0 140 90" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="30" cy="62" r="24"/><circle cx="110" cy="62" r="24"/>
+          <path d="M30 62 L58 62 L48 32 M58 62 C70 52 84 44 96 36 L110 62 M96 36 L92 22 L102 20 M48 32 L44 26 M38 26 L52 26"/>
+          <circle cx="58" cy="62" r="4"/>
+        </svg>
+      </div>
+    </div>
+    <div class="idrow">
+      <span><b>DPP-ID</b>BF-DPP-TRL-000417</span>
+      <span><b>Serien-Nr.</b>BF26TRL0417</span>
+      <span><b>Baujahr</b>2026</span>
+      <span><b>Datenträger</b>QR / NFC (NTAG215)</span>
+    </div>
+    <div class="mrz" aria-hidden="true">BFDPP&lt;TOURENRAD&lt;COMFORT&lt;LOW&lt;&lt;BF26TRL0417&lt;2026&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+  </div>
+
+  <div class="roles" role="tablist" aria-label="Zugriffsrolle">
+    <button role="tab" id="r-oeffentlich" data-r="oeffentlich" aria-selected="true">Öffentlich</button>
+    <button role="tab" id="r-werkstatt" data-r="werkstatt" aria-selected="false">Werkstatt</button>
+    <button role="tab" id="r-behoerde" data-r="behoerde" aria-selected="false">Behörde</button>
+  </div>
+  <p class="rolenote" id="rolenote">Ansicht für Käufer*innen: Basisdaten, Materialien, CO₂-Bilanz, Reparatur und Entsorgung.</p>
+
+  <section class="blk">
+    <h2>Produkt &amp; Hersteller <small>Stammdaten</small></h2>
+    <dl class="kv">
+      <dt>Hersteller</dt><dd>Bike und Fit GmbH, Hannover (fiktiv)</dd>
+      <dt>Modell / Variante</dt><dd>Comfort Low · Rahmenhöhe 50 cm · Farbe Petrol</dd>
+      <dt>Gewicht</dt><dd>17,4 kg (fahrbereit)</dd>
+      <dt>Zul. Gesamtgewicht</dt><dd>130 kg</dd>
+      <dt>Norm</dt><dd>DIN EN ISO 4210 (City- und Trekkingräder)</dd>
+      <dt>Herstellort</dt><dd>Montage Hannover, Rahmen geschweißt in Portugal</dd>
+    </dl>
+  </section>
+
+  <section class="blk">
+    <h2>Materialzusammensetzung <small>Masseanteile</small></h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Material</th><th>Bauteile</th><th class="n">kg</th><th class="n">Rezyklat</th></tr></thead>
+      <tbody id="mat"></tbody>
+    </table></div>
+  </section>
+
+  <section class="blk">
+    <h2>CO₂-Fußabdruck <small>kg CO₂e · Lebenszyklus</small></h2>
+    <div class="stats">
+      <div class="stat"><div class="v">188</div><div class="l">kg CO₂e gesamt</div></div>
+      <div class="stat"><div class="v">34 %</div><div class="l">Rezyklatanteil</div></div>
+      <div class="stat"><div class="v">92 %</div><div class="l">recyclingfähig</div></div>
+    </div>
+    <div class="chart" id="co2"></div>
+  </section>
+
+  <section class="blk">
+    <h2>Reparatur &amp; Ersatzteile <small>Right to Repair</small></h2>
+    <dl class="kv" style="margin-bottom:14px">
+      <dt>Reparierbarkeit</dt><dd><b>8,1 / 10</b> <span class="pill ok">gut</span></dd>
+      <dt>Ersatzteilverfügbarkeit</dt><dd>garantiert bis 2036</dd>
+      <dt>Werkzeuge</dt><dd>Standardwerkzeug (Inbus 4/5/6 mm, Torx T25)</dd>
+    </dl>
+    <div class="tbl"><table>
+      <thead><tr><th>Ersatzteil</th><th>Teile-Nr.</th><th class="n">Lieferzeit</th></tr></thead>
+      <tbody>
+        <tr><td>Bremsscheibe 180 mm</td><td class="mono">BF-BS-180-02</td><td class="n">3 Tage</td></tr>
+        <tr><td>Sattel Comfort (3D-gescannt, Rev. B)</td><td class="mono">BF-SA-CMF-B</td><td class="n">5 Tage</td></tr>
+        <tr><td>Kette 1/2″ × 1/8″</td><td class="mono">BF-KT-118</td><td class="n">2 Tage</td></tr>
+        <tr><td>Schutzblech-Set 28″</td><td class="mono">BF-SB-28</td><td class="n">7 Tage</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="blk" data-min="werkstatt">
+    <h2>Wartungshistorie <small>Werkstatt</small></h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Datum</th><th>Arbeit</th><th class="n">km</th></tr></thead>
+      <tbody>
+        <tr><td>14.03.2026</td><td>Auslieferung, Erstinspektion</td><td class="n">0</td></tr>
+        <tr><td>02.06.2026</td><td>Inspektion, Kette nachgestellt</td><td class="n">412</td></tr>
+        <tr><td>20.09.2026</td><td>Bremsbeläge vorne getauscht</td><td class="n">1 380</td></tr>
+      </tbody>
+    </table></div>
+    <dl class="kv" style="margin-top:14px">
+      <dt>Anzugsmomente</dt><dd>Vorbau 6 Nm · Sattelklemme 5 Nm · Bremsscheibe 6 Nm</dd>
+      <dt>Explosionsdarstellung</dt><dd>aus CAD (Siemens NX), Baugruppe BF-TRL-ASM, Rev. C</dd>
+    </dl>
+  </section>
+
+  <section class="blk" data-min="behoerde">
+    <h2>Konformität &amp; Rückverfolgung <small>Behörde</small></h2>
+    <dl class="kv">
+      <dt>PLM-Referenz</dt><dd class="mono">Teamcenter Item BF-TRL-0417 · Rev. C · Status „Released“</dd>
+      <dt>Freigabe</dt><dd>Workflow „Serienfreigabe“, abgeschlossen 03.02.2026</dd>
+      <dt>Lieferkette</dt><dd>Aluminium: Hütte NO (Wasserkraft) → Rohr PT → Rahmen PT → Montage DE</dd>
+      <dt>Prüfberichte</dt><dd>ISO 4210 Rahmenermüdung bestanden (Prüfbericht PB-2026-031)</dd>
+      <dt>Rechtsrahmen</dt><dd>EU-Ökodesign-Verordnung (ESPR) 2024/1781 · Konzeptstudie, für Fahrräder noch keine Pflicht</dd>
+    </dl>
+  </section>
+
+  <div class="lock" id="lock" hidden>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    <span id="locktxt"></span>
+  </div>
+
+  <section class="blk">
+    <h2>Ende der Nutzung <small>Demontage</small></h2>
+    <ol class="steps">
+      <li>Pedale, Laufräder und Sattel abbauen (Standardwerkzeug).</li>
+      <li>Reifen und Schläuche getrennt zum Gummi-Recycling.</li>
+      <li>Aluminiumrahmen und Felgen sortenrein zum Metallrecycling.</li>
+      <li>Kette, Kassette, Schrauben: Stahlschrott.</li>
+      <li>Rückgabe kostenlos bei jedem Bike-und-Fit-Händler.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <span>Datenstand 22.10.2026 · Pass-Version 1.3 · erzeugt aus Teamcenter-Daten</span>
+    <span>Demonstrator für Lehrzwecke. Keine realen Produkt- oder Unternehmensdaten.</span>
+  </footer>
+</div>
+
+<script>
+const mats=[
+  ["Aluminium 6061","Rahmen, Gabel, Felgen, Lenker",7.9,60],
+  ["Stahl","Kette, Speichen, Schrauben, Kassette",3.6,25],
+  ["Gummi (Natur/Synth.)","Reifen, Schläuche, Griffe",2.7,10],
+  ["Kunststoffe (PA, PP)","Schutzbleche, Pedale, Kettenschutz",1.9,15],
+  ["Sonstiges","Sattel (PU/Gel), Leuchten, Kabel",1.3,0]
+];
+document.getElementById("mat").innerHTML=mats.map(m=>
+  `<tr><td>${m[0]}<div class="bar"><i style="width:${(m[2]/17.4*100).toFixed(0)}%"></i></div></td><td>${m[1]}</td><td class="n">${m[2].toFixed(1).replace(".",",")}</td><td class="n">${m[3]} %</td></tr>`).join("");
+
+const co2=[["Rohstoffe",145],["Fertigung",18],["Transport",9],["Nutzung/Wartung",12],["Entsorgung",4]];
+(function(){
+  const W=520,rowH=30,top=6,lx=118,max=150,bw=W-lx-50,H=top+co2.length*rowH+24;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="CO2-Fußabdruck nach Lebenszyklusphase">`;
+  [0,50,100,150].forEach(t=>{const x=lx+t/max*bw;
+    s+=`<line x1="${x}" x2="${x}" y1="${top}" y2="${top+co2.length*rowH}" stroke="var(--line)"/><text class="lab" x="${x}" y="${H-6}" text-anchor="middle">${t}</text>`});
+  co2.forEach((d,i)=>{const y=top+i*rowH+6,w=d[1]/max*bw;
+    s+=`<text class="lab" x="${lx-8}" y="${y+13}" text-anchor="end">${d[0]}</text><rect x="${lx}" y="${y}" width="${w}" height="18" rx="3" fill="var(--accent)"/><text x="${lx+w+6}" y="${y+13}">${d[1]}</text>`});
+  document.getElementById("co2").innerHTML=s+"</svg>";
+})();
+
+const order=["oeffentlich","werkstatt","behoerde"];
+const notes={
+  oeffentlich:"Ansicht für Käufer*innen: Basisdaten, Materialien, CO₂-Bilanz, Reparatur und Entsorgung.",
+  werkstatt:"Ansicht für Fachwerkstätten: zusätzlich Wartungshistorie, Anzugsmomente und CAD-Explosionsdarstellung.",
+  behoerde:"Ansicht für Marktüberwachung: zusätzlich PLM-Referenz, Freigabestatus, Lieferkette und Prüfberichte."
+};
+function setRole(r){
+  if(!order.includes(r)) r="oeffentlich";
+  const lvl=order.indexOf(r);
+  document.querySelectorAll(".roles button").forEach(b=>b.setAttribute("aria-selected",b.dataset.r===r));
+  let hiddenCount=0;
+  document.querySelectorAll("[data-min]").forEach(el=>{const h=order.indexOf(el.dataset.min)>lvl;el.hidden=h;if(h)hiddenCount++});
+  document.getElementById("rolenote").textContent=notes[r];
+  const lock=document.getElementById("lock");
+  lock.hidden=hiddenCount===0;
+  document.getElementById("locktxt").textContent=hiddenCount+(hiddenCount===1?" weiterer Datenblock ist":" weitere Datenblöcke sind")+" nur für berechtigte Rollen sichtbar (in der Realität per Login/Zertifikat).";
+}
+document.querySelectorAll(".roles button").forEach(b=>b.addEventListener("click",()=>{setRole(b.dataset.r);try{history.replaceState(null,"","#"+b.dataset.r)}catch(e){}}));
+setRole((location.hash||"").slice(1));
+</script>
+
+</body>
+</html>
